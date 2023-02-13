@@ -1,5 +1,7 @@
 docker build -t jenkins:custumJenkins .
 
+mkdir jenkins-data
+
 docker run --name jenkins --rm -p 8080:8080 jenkins:custumJenkins
 
-docker run --name jenkins --rm -p 8080:8080 --env JENKINS_ADMIN_ID=admin --env JENKINS_ADMIN_PASSWORD=admin jenkins:custumJenkins
+docker run --name jenkins -d --rm --volume jenkins-data:/var/jenkins_home -p 8080:8080 --env JENKINS_ADMIN_ID=admin --env JENKINS_ADMIN_PASSWORD=admin jenkins:customJenkins
